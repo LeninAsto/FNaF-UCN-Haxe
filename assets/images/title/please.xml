@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="please.png">
+  <SubTexture name="pls0000" x="0" y="0" width="350" height="77"/>
+  <SubTexture name="pls0001" x="350" y="0" width="350" height="77"/>
+  <SubTexture name="pls0002" x="700" y="0" width="350" height="77"/>
+  <SubTexture name="pls0003" x="1050" y="0" width="350" height="77"/>
+  <SubTexture name="pls0004" x="0" y="77" width="350" height="77"/>
+  <SubTexture name="pls0005" x="350" y="77" width="350" height="77"/>
+  <SubTexture name="pls0006" x="700" y="77" width="350" height="77"/>
+  <SubTexture name="pls0007" x="1050" y="77" width="350" height="77"/>
+  <SubTexture name="pls0008" x="0" y="154" width="350" height="77"/>
+  <SubTexture name="pls0009" x="350" y="154" width="350" height="77"/>
+  <SubTexture name="pls0010" x="700" y="154" width="350" height="77"/>
+  <SubTexture name="pls0011" x="1050" y="154" width="350" height="77"/>
+  <SubTexture name="pls0012" x="0" y="231" width="350" height="77"/>
+  <SubTexture name="pls0013" x="350" y="231" width="350" height="77"/>
+  <SubTexture name="pls0014" x="700" y="231" width="350" height="77"/>
+  <SubTexture name="pls0015" x="1050" y="231" width="350" height="77"/>
+  <SubTexture name="pls0016" x="0" y="308" width="350" height="77"/>
+  <SubTexture name="pls0017" x="350" y="308" width="350" height="77"/>
+  <SubTexture name="pls0018" x="700" y="308" width="350" height="77"/>
+  <SubTexture name="pls0019" x="1050" y="308" width="350" height="77"/>
+  <SubTexture name="pls0020" x="0" y="385" width="350" height="77"/>
+</TextureAtlas>

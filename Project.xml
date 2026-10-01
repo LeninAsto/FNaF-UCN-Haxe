@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns:config="http://lime.openfl.org/config">
+	<meta title="UCN Haxe" package="com.local.ucnhaxe" version="0.0.1" company="Local" />
+
+	<app main="Main" file="UCN-Haxe" path="export" />
+	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
+
+	<source path="source" />
+
+	<haxelib name="lime" />
+	<haxelib name="openfl" />
+	<haxelib name="flixel" />
+	<haxelib name="hscript" />
+
+	<haxedef name="FLX_NO_DEBUG" />
+
+	<assets path="assets/sounds_ogg" rename="assets/sounds" include="*.ogg" />
+	<assets path="assets/images" rename="assets/images" include="*.png|*.xml" />
+	<assets path="MMFA Dump Media/Images" rename="assets/images" include="*.png|*.jpg|*.jpeg" />
+</project>
