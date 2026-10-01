@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="num-big.png">
+  <SubTexture name="one0000" x="0" y="0" width="35" height="75"/>
+  <SubTexture name="two0000" x="35" y="0" width="35" height="75"/>
+  <SubTexture name="three0000" x="70" y="0" width="35" height="75"/>
+  <SubTexture name="four0000" x="105" y="0" width="35" height="75"/>
+  <SubTexture name="five0000" x="0" y="75" width="35" height="75"/>
+  <SubTexture name="six0000" x="35" y="75" width="35" height="75"/>
+  <SubTexture name="seven0000" x="70" y="75" width="35" height="75"/>
+  <SubTexture name="eight0000" x="105" y="75" width="35" height="75"/>
+  <SubTexture name="nine0000" x="0" y="150" width="35" height="75"/>
+  <SubTexture name="zero0000" x="35" y="150" width="35" height="75"/>
+</TextureAtlas>

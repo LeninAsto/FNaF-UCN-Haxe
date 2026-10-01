@@ -134,8 +134,8 @@ class IntroState extends UCNState
 
         rockFreddy.scale.set(1, 1);
         rockFreddy.updateHitbox();
-        rockFreddy.x = 434 - rockFreddy.width;
-        rockFreddy.y = 1272 - rockFreddy.height;
+        rockFreddy.x = 44;
+        rockFreddy.y = 471;
         rockFreddy.visible = false;
         add(rockFreddy);
     }
@@ -151,7 +151,8 @@ class IntroState extends UCNState
 
         warning.scale.set(1, 1);
         warning.updateHitbox();
-        warning.screenCenter();
+        warning.screenCenter(X);
+        warning.y = 415;
         warning.visible = false;
         add(warning);
     }
@@ -420,8 +421,7 @@ class IntroState extends UCNState
         didJump = true;
         stopIntroAudio();
 
-        // Replace MainMenuState with the actual Frame 1 / menu state later.
-        switchStateWithFade(new MainMenuState());
+        switchStateWithFade(new Frame1State());
     }
 }
 

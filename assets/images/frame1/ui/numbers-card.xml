@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="numbers-card.png">
+  <SubTexture name="one0000" x="0" y="0" width="30" height="40"/>
+  <SubTexture name="two0000" x="30" y="0" width="30" height="40"/>
+  <SubTexture name="three0000" x="60" y="0" width="30" height="40"/>
+  <SubTexture name="four0000" x="90" y="0" width="30" height="40"/>
+  <SubTexture name="five0000" x="0" y="40" width="30" height="40"/>
+  <SubTexture name="six0000" x="30" y="40" width="30" height="40"/>
+  <SubTexture name="seven0000" x="60" y="40" width="30" height="40"/>
+  <SubTexture name="eight0000" x="90" y="40" width="30" height="40"/>
+  <SubTexture name="nine0000" x="0" y="80" width="30" height="40"/>
+  <SubTexture name="zero0000" x="30" y="80" width="30" height="40"/>
+</TextureAtlas>
