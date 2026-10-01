@@ -3,7 +3,7 @@
 	<meta title="UCN Haxe" package="com.local.ucnhaxe" version="0.0.1" company="Local" />
 
 	<app main="Main" file="UCN-Haxe" path="export" />
-	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window width="1920" height="1080" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<source path="source" />
 

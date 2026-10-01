@@ -14,8 +14,13 @@ class UCNState extends FlxState
 {
     static inline final DEFAULT_TRANSITION_TIME:Float = 0.35;
     static inline final EDITOR_TOGGLE_KEY:String = "F2";
+    static inline final STAGE_WIDTH:Int = 1920;
+    static inline final STAGE_HEIGHT:Int = 1080;
+    static inline final SNAP_DISTANCE:Float = 12;
 
     var stageEditorEnabled:Bool = false;
+    var stageEditorSnapEnabled:Bool = true;
+    var stageEditorClampEnabled:Bool = false;
     var stageEditorEntries:Array<StageEditorEntry> = [];
     var stageEditorImages:Array<String> = [];
     var stageEditorSelected:Int = -1;
@@ -25,6 +30,7 @@ class UCNState extends FlxState
     var stageEditorDragOffsetY:Float = 0;
     var stageEditorHud:FlxText;
     var stageEditorMarker:FlxSprite;
+    var stageEditorCenterDot:FlxSprite;
 
     override public function create():Void
     {
@@ -89,8 +95,17 @@ class UCNState extends FlxState
                 add(stageEditorMarker);
             }
 
+            if (stageEditorCenterDot == null)
+            {
+                stageEditorCenterDot = new FlxSprite(STAGE_WIDTH * 0.5 - 4, STAGE_HEIGHT * 0.5 - 4);
+                stageEditorCenterDot.makeGraphic(8, 8, 0xffff3333);
+                stageEditorCenterDot.scrollFactor.set();
+                add(stageEditorCenterDot);
+            }
+
             stageEditorHud.visible = stageEditorEnabled;
             stageEditorMarker.visible = stageEditorEnabled;
+            stageEditorCenterDot.visible = stageEditorEnabled;
         }
 
         if (!stageEditorEnabled)
@@ -104,6 +119,10 @@ class UCNState extends FlxState
 
         if (FlxG.keys.justPressed.TAB)
             stageEditorSelected = (stageEditorSelected + 1) % stageEditorEntries.length;
+        if (FlxG.keys.justPressed.S)
+            stageEditorSnapEnabled = !stageEditorSnapEnabled;
+        if (FlxG.keys.justPressed.B)
+            stageEditorClampEnabled = !stageEditorClampEnabled;
 
         if (FlxG.keys.justPressed.N && stageEditorImages.length > 0)
         {
@@ -139,6 +158,11 @@ class UCNState extends FlxState
             selected.visible = !selected.visible;
         if (FlxG.keys.justPressed.R)
             selected.angle = 0;
+        if (FlxG.keys.justPressed.H)
+        {
+            selected.x = (STAGE_WIDTH - selected.width) * 0.5;
+            selected.y = (STAGE_HEIGHT - selected.height) * 0.5;
+        }
         if (FlxG.keys.justPressed.DELETE && entry.temporary)
         {
             remove(selected, true);
@@ -161,12 +185,38 @@ class UCNState extends FlxState
         }
 
         selected.updateHitbox();
+        if (stageEditorSnapEnabled)
+        {
+            var centerX = selected.x + selected.width * 0.5;
+            var centerY = selected.y + selected.height * 0.5;
+
+            if (Math.abs(selected.x) <= SNAP_DISTANCE)
+                selected.x = 0;
+            if (Math.abs(selected.y) <= SNAP_DISTANCE)
+                selected.y = 0;
+            if (Math.abs((selected.x + selected.width) - STAGE_WIDTH) <= SNAP_DISTANCE)
+                selected.x = STAGE_WIDTH - selected.width;
+            if (Math.abs((selected.y + selected.height) - STAGE_HEIGHT) <= SNAP_DISTANCE)
+                selected.y = STAGE_HEIGHT - selected.height;
+            if (Math.abs(centerX - STAGE_WIDTH * 0.5) <= SNAP_DISTANCE)
+                selected.x = (STAGE_WIDTH - selected.width) * 0.5;
+            if (Math.abs(centerY - STAGE_HEIGHT * 0.5) <= SNAP_DISTANCE)
+                selected.y = (STAGE_HEIGHT - selected.height) * 0.5;
+        }
+
+        if (stageEditorClampEnabled)
+        {
+            selected.x = Math.max(0, Math.min(STAGE_WIDTH - selected.width, selected.x));
+            selected.y = Math.max(0, Math.min(STAGE_HEIGHT - selected.height, selected.y));
+        }
+
         stageEditorMarker.makeGraphic(Std.int(Math.max(1, selected.width)), Std.int(Math.max(1, selected.height)), 0x33ffff00);
         stageEditorMarker.x = selected.x;
         stageEditorMarker.y = selected.y;
 
         var line = entry.name + ".x = " + Std.int(selected.x) + "; " + entry.name + ".y = " + Std.int(selected.y)
-            + "; scale = " + selected.scale.x;
+            + "; scale = " + selected.scale.x + "; center = " + Std.int(selected.x + selected.width * 0.5) + ", "
+            + Std.int(selected.y + selected.height * 0.5) + "; size = " + Std.int(selected.width) + "x" + Std.int(selected.height);
 
         if (FlxG.keys.justPressed.C)
         {
@@ -174,7 +224,9 @@ class UCNState extends FlxState
             trace(line);
         }
 
-        stageEditorHud.text = "STAGE EDITOR F2 | TAB objeto | flechas/mouse mover | SHIFT rapido | Q/E escala | V visible | N imagen | DEL temp | C copiar\n"
+        stageEditorHud.text = "STAGE EDITOR F2 | TAB objeto | flechas/mouse mover | SHIFT rapido | S snap "
+            + (stageEditorSnapEnabled ? "ON" : "OFF") + " | B clamp " + (stageEditorClampEnabled ? "ON" : "OFF")
+            + " | H centro | Q/E escala | V visible | N imagen | DEL temp | C copiar\n"
             + (stageEditorSelected + 1) + "/" + stageEditorEntries.length + " " + line;
     }
 }
